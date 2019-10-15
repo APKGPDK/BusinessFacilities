@@ -17,8 +17,34 @@
     mapboxgl.accessToken = '{{ token }}';
     var map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v9'
+      style: 'mapbox://styles/mapbox/streets-v9',
+      zoom: 5,
     });
+
+    fetch('/data')
+      .then(response => response.json())
+      .then(data => {
+        data.facilities.forEach(facility => {
+          var popup = new mapboxgl.Popup({ offset: 25 })
+            .setHTML(`
+              <h3 class="title">${facility.title}</h3>
+              <div class="description">${facility.description}</div>
+              <div class="address">${facility.address}</div>
+            `);
+          new mapboxgl.Marker()
+            .setLngLat([facility.longitude, facility.latitude])
+            .setPopup(popup)
+            .addTo(map);
+        });
+
+        var facilityCount = data.facilities.length;
+        var centerSum = data.facilities.reduce((count, facility) => [
+          count[0] + facility.longitude,
+          count[1] + facility.latitude,
+        ], [0, 0]);
+        var center = centerSum.map(value => value / facilityCount);
+        map.setCenter(center);
+      });
   </script>
 </body>
 </html>
