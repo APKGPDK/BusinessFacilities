@@ -1,0 +1,22 @@
+{% extends "editor_layout.html" %}
+{% block body %}
+<table border="1">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Address</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for facility in facilities %} 
+      <tr>
+        <td>{{ facility.title }}</td>
+        <td>{{ facility.address }}</td>
+        <td><a href="{{ url_for('editor.delete_facility', id=facility.id) }}">Delete</a></td>
+      </tr>
+    {%endfor%}
+  </tbody>
+</table>
+<a href="{{ url_for('editor.create_facility') }}">Add new facility location</a>
+{% endblock %}
