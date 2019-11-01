@@ -1,14 +1,32 @@
 {% extends "editor_layout.html" %}
 {% block body %}
-<form id="form" method="POST">
-  <div>
-    <input name="title" placeholder="Title" />
+<!-- <form id="form" method="POST">
+    <div class="form-group">
+  <div class="input-group input-group-sm mb-3" >
+    <input name="title" placeholder="Title" class="form-control" aria-label="Default"/>
   </div>
   <div>
     <textarea name="description" placeholder="Description"></textarea>
   </div>
-  <input type="submit" value="Create" />
+  <input class="form-control" type="submit" value="Create" />
+</form> -->
+
+<form id="form" method="POST">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input id="title" name="title" placeholder="Title" class="form-control" aria-label="Default"
+      aria-describedby="titleHelp" />
+    <small id="titleHel" class="form-text text-muted">Enter location title.</small>
+  </div>
+  <div class="form-group">
+      <label for="description">Location description</label>
+      <textarea name="description" class="form-control" id="description" rows="3"></textarea>
+    </div>
+  <button type="submit" value="Create" class="btn btn-primary">Submit</button>
 </form>
+
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
 
 <div id="map" style="margin-top: 20px; height: 600px;"></div>
 <script>
@@ -26,13 +44,13 @@
   })
     .setLngLat([longitude, latitude])
     .addTo(map);
-  
+
   function onDragEnd() {
     var lngLat = marker.getLngLat();
     longitude = lngLat.lng;
     latitude = lngLat.lat;
   }
-  
+
   marker.on('dragend', onDragEnd);
 
   map.on('load', function () {
