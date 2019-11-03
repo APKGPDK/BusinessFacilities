@@ -16,8 +16,12 @@
       <tr>
         <td>{{ facility.title }}</td>
         <td>{{ facility.address }}</td>
-        <td><a href="{{ url_for('editor.delete_facility', id=facility.id) }}">Delete<button class="btn btn-danger">Add
-              new facility location</button></a> </td>
+        <td>
+          <a href="{{ url_for('editor.update_facility_data', id=facility.id) }}"><button class="btn btn-success">Update
+              location</button></a>
+          <a href="{{ url_for('editor.delete_facility', id=facility.id) }}"><button class="btn btn-danger">Delete
+              location</button></a>
+        </td>
       </tr>
       {%endfor%}
     </tbody>
