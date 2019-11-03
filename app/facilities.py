@@ -2,7 +2,7 @@ import os
 import json
 from uuid import uuid4
 
-facilities_path = os.path.join(os.getcwd(), 'facilities.json')
+facilities_path = os.path.join(os.getcwd(), '../data/facilities.json')
 
 
 def load_json():
