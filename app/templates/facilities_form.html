@@ -1,19 +1,24 @@
 {% extends "editor_layout.html" %}
 {% block body %}
-
-<form id="form" method="POST">
-  <div class="form-group">
-    <label for="title">Title</label>
-    <input id="title" name="title" placeholder="Title" class="form-control" aria-label="Default"
-      aria-describedby="titleHelp" />
-    <small id="titleHel" class="form-text text-muted">Enter location title.</small>
-  </div>
-  <div class="form-group">
-      <label for="description">Location description</label>
-      <textarea name="description" class="form-control" id="description" rows="3"></textarea>
+<div class="container">
+  <h3>Add facility</h3>
+  <form id="form" method="POST">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input id="title" name="title" placeholder="Title" class="form-control" aria-label="Default"
+        aria-describedby="titleHelp" />
+      <small id="titleHel" class="form-text text-muted">Enter location title.</small>
     </div>
-  <button type="submit" value="Create" class="btn btn-primary">Submit</button>
-</form>
+    <div class="form-group">
+        <label for="description">Location description</label>
+        <textarea name="description" class="form-control" id="description" rows="3"></textarea>
+      </div>
+    <button type="submit" value="Create" class="btn btn-primary">Submit</button>
+    <a href="{{ url_for('editor.show_editor') }}" class="btn btn-link">
+      Return to facilities list
+    </a>
+  </form>
+</div>
 
 <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.5.0/mapbox-gl.js'></script>
 <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css' rel='stylesheet' />
